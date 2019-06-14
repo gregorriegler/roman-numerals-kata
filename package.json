@@ -1,0 +1,19 @@
+{
+  "name": "roman-numerals-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require ts-node/register tests.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "*",
+    "@types/mocha": "*",
+    "chai": "*",
+    "mocha": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  }
+}
