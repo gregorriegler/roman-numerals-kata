@@ -54,30 +54,36 @@ function section(n: number, target: number, representation: string, rest) {
 
 
 describe('roman numerals generator', function () {
-    it('should generate numerals', function () {
-        expect(roman(1)).to.equal('I')
-        expect(roman(2)).to.equal('II')
-        expect(roman(3)).to.equal('III')
-        expect(roman(5)).to.equal('V')
-        expect(roman(4)).to.equal('IV')
-        expect(roman(6)).to.equal('VI')
-        expect(roman(7)).to.equal('VII')
-        expect(roman(8)).to.equal('VIII')
-        expect(roman(9)).to.equal('IX')
-        expect(roman(10)).to.equal('X')
-        expect(roman(11)).to.equal('XI')
-        expect(roman(13)).to.equal('XIII')
-        expect(roman(14)).to.equal('XIV')
-        expect(roman(15)).to.equal('XV')
-        expect(roman(16)).to.equal('XVI')
-        expect(roman(18)).to.equal('XVIII')
-        expect(roman(19)).to.equal('XIX')
-        expect(roman(20)).to.equal('XX')
-        expect(roman(21)).to.equal('XXI')
-        expect(roman(29)).to.equal('XXIX')
-        expect(roman(30)).to.equal('XXX')
-        expect(roman(31)).to.equal('XXXI')
-        expect(roman(39)).to.equal('XXXIX')
-        expect(roman(50)).to.equal('L')
-    });
+    let cases = [
+        {n: 1, roman: 'I'},
+        {n: 2, roman: 'II'},
+        {n: 3, roman: 'III'},
+        {n: 5, roman: 'V'},
+        {n: 4, roman: 'IV'},
+        {n: 6, roman: 'VI'},
+        {n: 7, roman: 'VII'},
+        {n: 8, roman: 'VIII'},
+        {n: 9, roman: 'IX'},
+        {n: 10, roman: 'X'},
+        {n: 11, roman: 'XI'},
+        {n: 13, roman: 'XIII'},
+        {n: 14, roman: 'XIV'},
+        {n: 15, roman: 'XV'},
+        {n: 16, roman: 'XVI'},
+        {n: 18, roman: 'XVIII'},
+        {n: 19, roman: 'XIX'},
+        {n: 20, roman: 'XX'},
+        {n: 21, roman: 'XXI'},
+        {n: 29, roman: 'XXIX'},
+        {n: 30, roman: 'XXX'},
+        {n: 31, roman: 'XXXI'},
+        {n: 39, roman: 'XXXIX'},
+        {n: 50, roman: 'L'},
+    ];
+
+    cases.forEach(function(x) {
+        it(x.n + ' -> ' + x.roman, function () {
+            expect(roman(x.n)).to.equal(x.roman)
+        })
+    })
 });
