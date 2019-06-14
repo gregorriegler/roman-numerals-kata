@@ -11,6 +11,8 @@
   "devDependencies": {
     "@types/chai": "*",
     "@types/mocha": "*",
+    "@types/node": "*",
+    "@types/core-js": "*",
     "chai": "*",
     "mocha": "*",
     "ts-node": "*",

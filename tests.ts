@@ -1,69 +1,73 @@
 import {expect} from "chai";
 
-let sections = [
-    {'numeral': 'M', 'n': 1000},
-    {'numeral': 'CM', 'n': 900},
-    {'numeral': 'D', 'n': 500},
-    {'numeral': 'CD', 'n': 400},
-    {'numeral': 'C', 'n': 100},
-    {'numeral': 'LC', 'n': 90},
-    {'numeral': 'L', 'n': 50},
-    {'numeral': 'XL', 'n': 40},
-    {'numeral': 'X', 'n': 10},
-    {'numeral': 'IX', 'n': 9},
-    {'numeral': 'V', 'n': 5},
-    {'numeral': 'IV', 'n': 4},
-    {'numeral': 'I', 'n': 1}
-]
+const numerals = new Map<string, number>([
+    ['M', 1000],
+    ['CM', 900],
+    ['D', 500],
+    ['CD', 400],
+    ['C', 100],
+    ['LC', 90],
+    ['L', 50],
+    ['XL', 40],
+    ['X', 10],
+    ['IX', 9],
+    ['V', 5],
+    ['IV', 4],
+    ['I', 1]
+]);
 
 function roman(n: number) {
     let result = '';
-    for (let i = 0; i < sections.length; i++) {
-        let currentSection = sections[i];
 
-        while (n >= currentSection.n) {
-            result += currentSection.numeral
-            n -= currentSection.n
+    for (let [numeral, numeralValue] of numerals) {
+        while (n >= numeralValue) {
+            result += numeral
+            n -= numeralValue
         }
-
     }
 
     return result
 }
 
+
+
 describe('roman numerals generator', function () {
-    let cases = [
-        {n: 1, roman: 'I'},
-        {n: 2, roman: 'II'},
-        {n: 3, roman: 'III'},
-        {n: 4, roman: 'IV'},
-        {n: 5, roman: 'V'},
-        {n: 6, roman: 'VI'},
-        {n: 7, roman: 'VII'},
-        {n: 8, roman: 'VIII'},
-        {n: 9, roman: 'IX'},
-        {n: 10, roman: 'X'},
-        {n: 11, roman: 'XI'},
-        {n: 13, roman: 'XIII'},
-        {n: 14, roman: 'XIV'},
-        {n: 15, roman: 'XV'},
-        {n: 16, roman: 'XVI'},
-        {n: 18, roman: 'XVIII'},
-        {n: 19, roman: 'XIX'},
-        {n: 20, roman: 'XX'},
-        {n: 21, roman: 'XXI'},
-        {n: 29, roman: 'XXIX'},
-        {n: 30, roman: 'XXX'},
-        {n: 31, roman: 'XXXI'},
-        {n: 39, roman: 'XXXIX'},
-        {n: 49, roman: 'XLIX'},
-        {n: 50, roman: 'L'},
-        {n: 1984, roman: 'MCMLXXXIV'}
+    const cases = [
+        c(1, 'I'),
+        c(2, 'II'),
+        c(3, 'III'),
+        c(4, 'IV'),
+        c(5, 'V'),
+        c(6, 'VI'),
+        c(7, 'VII'),
+        c(8, 'VIII'),
+        c(9, 'IX'),
+        c(10, 'X'),
+        c(11, 'XI'),
+        c(13, 'XIII'),
+        c(14, 'XIV'),
+        c(15, 'XV'),
+        c(16, 'XVI'),
+        c(18, 'XVIII'),
+        c(19, 'XIX'),
+        c(20, 'XX'),
+        c(21, 'XXI'),
+        c(29, 'XXIX'),
+        c(30, 'XXX'),
+        c(31, 'XXXI'),
+        c(39, 'XXXIX'),
+        c(49, 'XLIX'),
+        c(50, 'L'),
+        c(1984, 'MCMLXXXIV')
     ];
 
-    cases.forEach(function (x) {
-        it(x.n + ' -> ' + x.roman, function () {
-            expect(roman(x.n)).to.equal(x.roman)
+    cases.forEach(function (c) {
+        it(c.n + ' -> ' + c.roman, function () {
+            expect(roman(c.n)).to.equal(c.roman)
         })
     })
+
+    function c(n: number, roman: string) {
+        return {n: n, roman: roman};
+    }
 });
