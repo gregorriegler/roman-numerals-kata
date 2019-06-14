@@ -1,7 +1,14 @@
 import {expect} from "chai";
 
 let sections = [
+    {'numeral': 'M', 'n': 1000},
+    {'numeral': 'CM', 'n': 900},
+    {'numeral': 'D', 'n': 500},
+    {'numeral': 'CD', 'n': 400},
+    {'numeral': 'C', 'n': 100},
+    {'numeral': 'LC', 'n': 90},
     {'numeral': 'L', 'n': 50},
+    {'numeral': 'XL', 'n': 40},
     {'numeral': 'X', 'n': 10},
     {'numeral': 'IX', 'n': 9},
     {'numeral': 'V', 'n': 5},
@@ -11,11 +18,14 @@ let sections = [
 
 function roman(n: number) {
     let result = '';
-    for (const section of sections) {
-        while (n >= section.n) {
-            result += section.numeral
-            n -= section.n
+    for (let i = 0; i < sections.length; i++) {
+        let currentSection = sections[i];
+
+        while (n >= currentSection.n) {
+            result += currentSection.numeral
+            n -= currentSection.n
         }
+
     }
 
     return result
@@ -46,7 +56,9 @@ describe('roman numerals generator', function () {
         {n: 30, roman: 'XXX'},
         {n: 31, roman: 'XXXI'},
         {n: 39, roman: 'XXXIX'},
+        {n: 49, roman: 'XLIX'},
         {n: 50, roman: 'L'},
+        {n: 1984, roman: 'MCMLXXXIV'}
     ];
 
     cases.forEach(function (x) {
